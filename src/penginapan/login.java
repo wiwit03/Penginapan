@@ -125,15 +125,20 @@ public class login extends javax.swing.JFrame {
 
     private void BtnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLoginActionPerformed
         // TODO add your handling code here:
-        String kataSandi = new String(FieldPassword.getPassword());
         
-        if((FieldUsername.getText().equals("aini"))&&(kataSandi.equals("12345"))){
-            JOptionPane.showMessageDialog(this, "Anda berhasil login!", "Pesan", JOptionPane.INFORMATION_MESSAGE);
-            this.dispose();
-        }else{
-            JOptionPane.showMessageDialog(this, "Maaf, Anda Gagal Login!", "Pesan", JOptionPane.INFORMATION_MESSAGE);
-        }
-
+        String katasandi = new String (FieldPassword.getPassword());
+        Statement stmt = null;
+        ResultSet rs = null
+        Connection conn = null;
+        
+       try {
+           conn = DriverManager.getConnection("jdbc:mysql://localhost/Lab_Pbol?")+
+           "user=root&password=");
+           stmt = conn.createStatement();
+           rs = stmt.executeQuery("SELECT COUNT(*) FROM user WHERE username='"+fieldUsername.getText()+"' and password='"+
+           kataSandi+"'");
+           
+       }
     }//GEN-LAST:event_BtnLoginActionPerformed
 
     private void FieldUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FieldUsernameActionPerformed
